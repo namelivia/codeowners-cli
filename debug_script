@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo 'get a path'
+pipenv run python cli.py owners get --path src/some_folder/file.tsx --owners_file_path /home/my_user/my_project/CODEOWNERS > /tmp/get

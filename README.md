@@ -1,0 +1,3 @@
+# codeowners-cli [![tag](https://img.shields.io/github/tag/namelivia/codeowners-cli.svg)](https://github.com/namelivia/codeowners-cli/releases) [![build](https://github.com/namelivia/codeowners-cli/actions/workflows/build.yml/badge.svg)](https://github.com/namelivia/codeowners-cli/actions/workflows/build.yml) [![codecov](https://codecov.io/gh/namelivia/codeowners-cli/branch/main/graph/badge.svg?token=vslGEYGDfV)](https://codecov.io/gh/namelivia/codeowners-cli) [![Lint](https://github.com/namelivia/codeowners-cli/actions/workflows/black.yml/badge.svg)](https://github.com/namelivia/codeowners-cli/actions/workflows/black.yml)
+
+WIP
