@@ -2,6 +2,7 @@ import click
 import os
 from codeowners import CodeOwners
 from git import Repo
+from github import Github
 from collections import Counter
 
 
@@ -36,11 +37,32 @@ def get_owners_for_file(repo, path):
     return authors
 
 
+def get_user_teams(email, token, organization):
+    user_teams = []
+    github = Github(token)
+    org = github.get_organization(organization)
+    teams = org.get_teams()
+    try:
+        users = list(github.search_users(f"{email} in:email"))
+        if len(users) == 0:
+            return []  # email not found
+        user = github.get_user(users[0].login)
+        for team in teams:
+            if team.has_in_members(user):
+                user_teams.append(team)
+        return user_teams
+    except Exception as e:
+        click.echo(click.style(str(e), fg="red"))
+        return []
+
+
 @click.command()
 @click.option("--path", help="The path for the file to check", required=True)
 @click.option("--owners_file_path", help="The path for codeowners file", required=True)
 @click.option("--repo", help="The path for repo root", required=True)
-def suggest(path, owners_file_path, repo):
+@click.option("--token", help="Access token to access Github", required=False)
+@click.option("--organization", help="Organization name", required=False)
+def suggest(path, owners_file_path, repo, token=None, organization=None):
     try:
         repo_path = repo
         full_path = os.path.join(repo, path)
@@ -64,8 +86,14 @@ def suggest(path, owners_file_path, repo):
             sorted(total_authors.items(), key=lambda item: item[1], reverse=True)
         )
         for author, lines in sorted_authors.items():
+            if token is not None and organization is not None:
+                author_teams = " ".join(
+                    [team.name for team in get_user_teams(author, token, organization)]
+                )
+            else:
+                author_teams = " "
             percentage = lines / total * 100
-            click.echo(f"{author} : {percentage} %")
+            click.echo(f"{author_teams} ({author}) : {percentage} %")
     except Exception as e:  # TODO: Try restricting the exception to have better granularity
         click.echo(click.style(str(e), fg="red"))
 
