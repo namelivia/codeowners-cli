@@ -22,3 +22,4 @@ allow_prereleases = true
 click = "*"
 pydantic = "*"
 codeowners = "*"
+GitPython = "*"

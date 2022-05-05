@@ -14,3 +14,19 @@ class TestCli:
             ["owners", "get", "--path", path, "--owners_file_path", owners_file_path],
         )
         assert result.exit_code == 0
+
+    def test_suggesting_owner_of_a_file(self):
+        path = "/some/file/path"
+        owners_file_path = "/some/owners/file/path"
+        result = self.runner.invoke(
+            cli,
+            [
+                "owners",
+                "suggest",
+                "--path",
+                path,
+                "--owners_file_path",
+                owners_file_path,
+            ],
+        )
+        assert result.exit_code == 0
