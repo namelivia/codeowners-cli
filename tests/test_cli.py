@@ -10,6 +10,7 @@ class TestCli:
         path = "/some/file/path"
         owners_file_path = "/some/owners/file/path"
         result = self.runner.invoke(
-            cli, ["owners", "get", "--path", path, "--owners_file_path", owners_file_path]
+            cli,
+            ["owners", "get", "--path", path, "--owners_file_path", owners_file_path],
         )
         assert result.exit_code == 0
