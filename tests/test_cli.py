@@ -3,7 +3,7 @@ from cli import cli
 
 
 class TestCli:
-    def setup(self):
+    def setup_method(self):
         self.runner = CliRunner()
 
     def test_getting_owner_of_a_file(self):
@@ -18,6 +18,7 @@ class TestCli:
     def test_suggesting_owner_of_a_file(self):
         path = "/some/file/path"
         owners_file_path = "/some/owners/file/path"
+        repo = "some-repo"
         result = self.runner.invoke(
             cli,
             [
@@ -25,6 +26,8 @@ class TestCli:
                 "suggest",
                 "--path",
                 path,
+                "--repo",
+                repo,
                 "--owners_file_path",
                 owners_file_path,
             ],
