@@ -206,11 +206,12 @@
         },
         "codeowners": {
             "hashes": [
-                "sha256:8af05a93017c70615b75435fd53fd1813b3da996121c0b27e33b4260d93a5afd",
-                "sha256:c5bde270f3cded9b397ef487d729be9287c208b71114fb9a1394aba7285ff53e"
+                "sha256:0df5cd47299f984ba2e120dc4a0a7be68b528d53016ff39d06e86f85e33c7fc2",
+                "sha256:a842647b20968c14da6066e4de4fffac4fd7c1c30de9cfa8b2fc8f534b3d9f48"
             ],
             "index": "pypi",
-            "version": "==0.6.0"
+            "markers": "python_version >= '3.7' and python_version < '4.0'",
+            "version": "==0.7.0"
         },
         "deprecated": {
             "hashes": [
